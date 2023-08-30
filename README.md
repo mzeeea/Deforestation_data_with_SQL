@@ -44,7 +44,7 @@ There are **218** countries involved in deforestation.
   ---
   2. Income groups of countries having total area ranging from 75,000 to 150,000.
 
-`SELECT DISTINCT(income_group) FROM regions R JOIN land_area L ON R.country_code = L.country_code
+`SELECT income_group, R.country_name, total_area_sq_mi FROM regions R JOIN land_area L ON R.country_code = L.country_code
 WHERE L.total_area_sq_mi >= 75000 AND L.total_area_sq_mi <=150000;`
 
 ![](Q2.png)
@@ -52,7 +52,7 @@ WHERE L.total_area_sq_mi >= 75000 AND L.total_area_sq_mi <=150000;`
 ---
 3. Names of countries that have a forest area (in square kilometers) greater than the average forest area of all countries in the "High Income" income group.
 
-`SELECT DISTINCT(country_name) FROM forest_area WHERE forest_area_sqkm >
+`SELECT country_name, forest_area_sqkm FROM forest_area WHERE forest_area_sqkm >
 (SELECT AVG(forest_area_sqkm) AS average_farea_high_income FROM forest_area F JOIN regions R ON F.country_code = R.country_code
 WHERE income_group = 'High income');`
 
